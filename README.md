@@ -6,12 +6,14 @@ L'objectif sera de gérer deux commandes :
 - puttftp host file
 
 
+---
 ## Question 1 
 
 
 On passe les informations de la ligne de commande dans la chaine de caractère argv. Les informations extraites sont le nom du serveur ainsi que le nom du fichier à manipuler.  
 
 
+---
 ## Question 2  
 
 On utilise un pointeur vers une structure addrinfo permettant de forcer l'IPV4 ainsi que de prioriser TFTP sur UDP. Le champ ai_family contient le type d'adresse, ai_socktype contient le type de socket, soit le mode de fonctionnement que l'on peut utiliser, et ai_protocol contient le protocole IPV4 que l'on veut utiliser pour établir une connexion avec le serveur. On configure alors getaddrinfo qui permet d'obtenir la liste des adresse IP et port du serveur. 
