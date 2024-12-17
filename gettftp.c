@@ -38,8 +38,23 @@ int main(int argc, char *argv[]) {
 	printf("Downloading file '%s' from server '%s'\n", file, server);
     
 	// Implement the TFTP download logic here
-    	freeaddrinfo(res);
+    	
+
+	char buffer[BUFFER_SIZE];
+    	// Manually construct the RRQ packet
+    	int opcode = htons(TFTP_OPCODE_RRQ); // Convert the opcode to network byte order
+    	memcpy(buffer, &opcode, sizeof(opcode)); // Copy opcode to the buffer
+    	strcpy(buffer + BUFFER_OFFSET, file); // Copy file name to the buffer
+    	strcpy(buffer + BUFFER_OFFSET + strlen(file) + END_OF_FILE_BUFFER_OFFSET, "octet"); // 		Copy mode to the buffer after the file name
+    	int len = BUFFER_OFFSET + strlen(file) + END_OF_FILE_BUFFER_OFFSET + strlen("octet") + 1;
+    	if (sendto(sockfd, buffer, len, 0, res->ai_addr, res->ai_addrlen) == SENDTO_ERROR_HANDLER) { // Sendto error handler
+        	perror("sendto");
+        	close(sockfd);
+        	freeaddrinfo(res);
+        	return 4;
+    	}
     	close(sockfd);
+	freeaddrinfo(res);
 
     	return 0;
 }

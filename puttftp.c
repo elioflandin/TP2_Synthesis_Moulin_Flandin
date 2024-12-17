@@ -38,8 +38,10 @@ int main(int argc, char *argv[]) {
 	printf("Downloading file '%s' from server '%s'\n", file, server);
     
 	// Implement the TFTP download logic here
-    	freeaddrinfo(res);
+
+	
     	close(sockfd);
+	freeaddrinfo(res);
 
     	return 0;
 }
