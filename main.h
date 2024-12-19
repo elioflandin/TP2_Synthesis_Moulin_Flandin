@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <netdb.h>
 
-#define PORT_NUMBER "69"
+#define PORT_NUMBER "1069"
 #define SOCKET_ERROR_HANDLER (-1) // Define SOCKET_ERROR_HANDLER value
 #define SENDTO_ERROR_HANDLER (-1) // Define SENDTO_ERROR_HANDLER value
 
@@ -21,6 +21,9 @@
 #define TFTP_OPCODE_RRQ 1 // RRQ Code for the TFTP Server
 #define TFTP_OPCODE_DATA 3 // Data Code for the TFTP Server
 #define TFTP_OPCODE_ACK 4 // ACK Code for the TFTP Server
+
+#define FOPEN_MODE "wb" // Define the fopen function mode, "wb" is to open an empty file and write in it
+#define RECV_FLAG_QUANTITY 0 // Define the number of flags waited on the received message, here none
 
 int gettftp();
 
